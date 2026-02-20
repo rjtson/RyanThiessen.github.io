@@ -3,29 +3,31 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Ryan — Applied Mathematician | PDE/ODE models, reaction–diffusion, mathematical biology" />
-  <title>Ryan — Applied Mathematician</title>
+  <meta name="description" content="Ryan J. Thiessen — Applied Mathematician" />
+  <title>Ryan J. Thiessen — Applied Mathematician</title>
 
   <style>
     :root{
-      --bg:#0b1020;
-      --panel:#0f1730;
-      --text:#e8ecff;
-      --muted:#b9c2ffcc;
+      --bg: #0b1020;
+      --panel: #0f1730;
+      --panel2:#0d142b;
+      --text:#e9eeff;
+      --muted:#bac5ffcc;
       --line:#2a3570;
       --accent:#8ad7ff;
       --accent2:#b5ffb0;
       --link:#9be1ff;
       --shadow: 0 18px 60px rgba(0,0,0,.35);
       --radius: 18px;
-      --max: 1020px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --max: 1060px;
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
     @media (prefers-color-scheme: light){
       :root{
         --bg:#f7f9ff;
         --panel:#ffffff;
+        --panel2:#ffffff;
         --text:#0c1333;
         --muted:#32406acc;
         --line:#dbe3ff;
@@ -35,51 +37,49 @@
         --shadow: 0 14px 40px rgba(12,19,51,.12);
       }
     }
+
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
     body{
       font-family: var(--sans);
+      color: var(--text);
+      line-height: 1.6;
       background:
         radial-gradient(900px 500px at 10% 0%, rgba(138,215,255,.20), transparent 60%),
         radial-gradient(900px 500px at 90% 10%, rgba(181,255,176,.14), transparent 60%),
         var(--bg);
-      color: var(--text);
-      line-height: 1.55;
     }
+
     a{color:var(--link);text-decoration:none}
     a:hover{text-decoration:underline}
-    .wrap{max-width:var(--max); margin: 0 auto; padding: 28px 18px 64px}
-    header{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 18px;
-      align-items: start;
-      margin-top: 12px;
-    }
-    @media (max-width: 860px){
-      header{grid-template-columns:1fr}
-    }
+    .wrap{max-width:var(--max); margin:0 auto; padding: 22px 16px 70px}
     .card{
       background: linear-gradient(180deg, rgba(255,255,255,.04), transparent), var(--panel);
       border: 1px solid var(--line);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 20px;
     }
-    .title{
-      display:flex; flex-direction:column; gap:8px;
+    .hero{
+      padding: 22px;
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 16px;
+      align-items:start;
     }
-    h1{
-      margin: 0;
-      font-size: 40px;
-      letter-spacing: -0.02em;
+    @media (max-width: 900px){ .hero{grid-template-columns:1fr} }
+
+    .kicker{
+      font-family: var(--mono);
+      color: var(--accent);
+      font-size: 12px;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      opacity: .95;
+      margin-bottom: 10px;
     }
-    .subtitle{
-      margin: 0;
-      color: var(--muted);
-      font-size: 16px;
-    }
-    .pillrow{display:flex; flex-wrap:wrap; gap:10px; margin-top: 12px}
+    h1{margin:0; font-size: 40px; letter-spacing:-.02em}
+    .subtitle{margin: 8px 0 0 0; color: var(--muted); font-size: 16px}
+    .pillrow{display:flex; flex-wrap:wrap; gap:10px; margin-top: 14px}
     .pill{
       border: 1px solid var(--line);
       background: rgba(255,255,255,.03);
@@ -88,61 +88,81 @@
       font-size: 13px;
       color: var(--muted);
     }
-    nav{
+
+    .rightcol{padding: 16px; background: rgba(255,255,255,.02); border: 1px solid var(--line); border-radius: 14px}
+    .rightcol h2{margin:0 0 8px 0; font-size: 16px}
+    .meta{color: var(--muted); font-size: 14px; line-height: 1.55}
+    .btnrow{display:flex; gap:10px; flex-wrap:wrap; margin-top: 12px}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border: 1px solid var(--line);
+      padding: 9px 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.03);
+      font-weight: 650;
+    }
+    .btn:hover{background: rgba(255,255,255,.08); text-decoration:none}
+
+    .nav{
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      margin-top: 14px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(15,23,48,.70);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--line);
       display:flex;
-      flex-wrap:wrap;
       gap: 10px;
+      flex-wrap:wrap;
       align-items:center;
     }
-    nav a{
+    @media (prefers-color-scheme: light){
+      .nav{ background: rgba(255,255,255,.75); }
+    }
+    .nav a{
       display:inline-flex;
       gap:8px;
       align-items:center;
       border: 1px solid var(--line);
-      padding: 8px 12px;
+      padding: 7px 10px;
       border-radius: 999px;
       background: rgba(255,255,255,.02);
+      font-size: 13px;
+      color: var(--muted);
     }
-    nav a:hover{background: rgba(255,255,255,.06); text-decoration:none}
-    .grid{
+    .nav a:hover{background: rgba(255,255,255,.06); text-decoration:none; color: var(--text)}
+    .nav .spacer{flex:1}
+    .nav small{color: var(--muted)}
+
+    main{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    .section{padding: 18px}
+    .section h2{margin:0 0 8px 0; font-size: 20px; letter-spacing:-.01em}
+    .muted{color: var(--muted)}
+    .grid2{
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      margin-top: 18px;
+      gap: 14px;
     }
-    @media (max-width: 860px){
-      .grid{grid-template-columns: 1fr}
-    }
-    h2{
-      margin: 0 0 10px 0;
-      font-size: 20px;
-      letter-spacing: -0.01em;
-    }
-    .muted{color: var(--muted)}
-    .list{margin: 10px 0 0 0; padding-left: 18px}
-    .list li{margin: 8px 0}
-    .kicker{
-      font-family: var(--mono);
-      color: var(--accent);
-      font-size: 12px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-      opacity: .95;
-    }
+    @media (max-width: 900px){ .grid2{grid-template-columns:1fr} }
+
     .item{
       padding: 12px 0;
       border-top: 1px solid var(--line);
     }
     .item:first-of-type{border-top:none; padding-top: 0}
-    .item-title{
-      font-weight: 650;
-      display:flex;
-      gap: 10px;
-      flex-wrap:wrap;
-      align-items:baseline;
-    }
+    .item-title{font-weight: 700}
     .where{color: var(--muted); font-weight: 500}
+    .mini{font-size: 13px; color: var(--muted)}
     .tags{display:flex; flex-wrap:wrap; gap: 8px; margin-top: 8px}
     .tag{
       font-family: var(--mono);
@@ -153,30 +173,46 @@
       border-radius: 999px;
       background: rgba(255,255,255,.02);
     }
+
+    /* publications controls */
+    .pub-controls{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin: 10px 0 6px 0;
+    }
+    .input, .select{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 14px;
+      outline: none;
+    }
+    .input{min-width: 260px; flex: 1}
+    .select{min-width: 170px}
+    .count{color: var(--muted); font-size: 13px}
+    .pub{
+      padding: 12px 0;
+      border-top: 1px solid var(--line);
+    }
+    .pub:first-of-type{border-top:none}
+    .pub .title{font-weight: 750}
+    .pub .meta{color: var(--muted); font-size: 13px}
+    .pub .links a{font-size: 13px}
+    .pub .links{margin-top: 6px; display:flex; gap:10px; flex-wrap:wrap}
     .footer{
-      margin-top: 22px;
+      margin-top: 10px;
       color: var(--muted);
       font-size: 13px;
       display:flex;
       justify-content:space-between;
       gap: 10px;
       flex-wrap:wrap;
+      padding: 14px 4px 0;
     }
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      border: 1px solid var(--line);
-      padding: 10px 12px;
-      border-radius: 12px;
-      background: rgba(255,255,255,.03);
-      font-weight: 650;
-    }
-    .btn:hover{background: rgba(255,255,255,.08); text-decoration:none}
-    .two{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-    @media (max-width: 520px){ .two{grid-template-columns: 1fr} }
     .note{
       border-left: 3px solid var(--accent2);
       padding: 10px 12px;
@@ -189,207 +225,552 @@
 </head>
 
 <body>
-  <div class="wrap">
-    <header>
-      <section class="card">
-        <div class="kicker">Applied Mathematics • Mathematical Biology</div>
-        <div class="title">
-          <h1>Ryan <span style="color:var(--accent)">[Last Name]</span></h1>
-          <p class="subtitle">
-            Postdoctoral Researcher, University of Massachusetts Amherst •
-            PDE/ODE models • reaction–diffusion • travelling waves • critical domain size
-          </p>
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="card hero" id="top">
+    <div>
+      <div class="kicker" id="kicker">Applied Mathematics • Mathematical Biology</div>
+      <h1 id="name">Ryan J. Thiessen</h1>
+      <p class="subtitle" id="subtitle">
+        Applied Mathematician • PDE/ODE models in biology • travelling waves • reaction–diffusion
+      </p>
+
+      <div class="pillrow" id="pillrow" aria-label="research interests"></div>
+
+      <div class="note" id="note">
+        This page is generated from a small profile object at the top of the file—easy to keep current.
+      </div>
+    </div>
+
+    <aside class="rightcol">
+      <h2>Contact</h2>
+      <div class="meta" id="contact"></div>
+      <div class="btnrow" id="buttons"></div>
+    </aside>
+  </section>
+
+  <!-- NAV -->
+  <nav class="nav" aria-label="site navigation">
+    <a href="#about">About</a>
+    <a href="#research">Research</a>
+    <a href="#publications">Publications</a>
+    <a href="#teaching">Teaching</a>
+    <a href="#talks">Talks</a>
+    <a href="#service">Service</a>
+    <a href="#awards">Awards</a>
+    <a href="#education">Education</a>
+    <span class="spacer"></span>
+    <small>Last updated: <span id="lastUpdated"></span></small>
+  </nav>
+
+  <main>
+    <!-- ABOUT + RESEARCH OVERVIEW -->
+    <section class="card section" id="about">
+      <div class="kicker">About</div>
+      <div class="grid2">
+        <div>
+          <h2>Summary</h2>
+          <p class="muted" id="aboutText"></p>
         </div>
-
-        <div class="pillrow" aria-label="research interests">
-          <span class="pill">reaction–diffusion PDE/ODE systems</span>
-          <span class="pill">go-or-grow glioma models</span>
-          <span class="pill">nonlocal cell adhesion</span>
-          <span class="pill">bifurcation &amp; pattern formation</span>
-          <span class="pill">Young measures / measure-valued states</span>
+        <div>
+          <h2>Quick links</h2>
+          <div class="muted" id="quickLinks"></div>
+          <div class="note" id="outdatedNote" style="display:none"></div>
         </div>
+      </div>
+    </section>
 
-        <p class="note">
-          I build and analyze mathematical models in biology and medicine, with a focus on
-          qualitative dynamics, travelling waves, and steady states under constraints (e.g., hostile boundaries).
-        </p>
-      </section>
+    <section class="card section" id="research">
+      <div class="kicker">Research</div>
+      <h2>Current themes</h2>
+      <div id="researchItems"></div>
+    </section>
 
-      <aside class="card">
-        <h2>Contact</h2>
-        <p class="muted" style="margin-top:6px; margin-bottom: 14px;">
-          <strong>Email:</strong> <a href="mailto:you@umass.edu">you@umass.edu</a><br/>
-          <strong>Office:</strong> [Building], Amherst, MA<br/>
-          <strong>CV:</strong> <a href="cv.pdf">cv.pdf</a> (upload alongside this file)<br/>
-          <strong>Scholar:</strong> <a href="#">Google Scholar</a> •
-          <strong>ORCID:</strong> <a href="#">0000-0000-0000-0000</a>
-        </p>
+    <!-- PUBLICATIONS -->
+    <section class="card section" id="publications">
+      <div class="kicker">Publications</div>
+      <h2>Papers</h2>
 
-        <nav aria-label="site navigation">
-          <a href="#about">About</a>
-          <a href="#research">Research</a>
-          <a href="#publications">Publications</a>
-          <a href="#teaching">Teaching</a>
-          <a href="#talks">Talks</a>
-          <a href="#software">Software</a>
-        </nav>
+      <div class="pub-controls">
+        <input class="input" id="pubSearch" type="search" placeholder="Search title, author, venue, keyword…" />
+        <select class="select" id="pubType">
+          <option value="all">All</option>
+          <option value="published">Published</option>
+          <option value="submitted">Submitted</option>
+        </select>
+        <select class="select" id="pubYear">
+          <option value="all">All years</option>
+        </select>
+        <span class="count" id="pubCount"></span>
+      </div>
 
-        <div style="margin-top:14px" class="two">
-          <a class="btn" href="#publications">See papers</a>
-          <a class="btn" href="cv.pdf">Download CV</a>
-        </div>
-      </aside>
-    </header>
+      <div id="pubList"></div>
 
-    <main class="grid">
-      <section id="about" class="card">
-        <div class="kicker">About</div>
-        <h2>Summary</h2>
-        <p class="muted">
-          I’m an applied mathematician working on PDE/ODE models arising in mathematical biology.
-          My recent work studies <em>critical domain size</em> phenomena and multistability in go-or-grow glioma models,
-          and travelling wave solutions for cooperative and non-cooperative systems. I’m also interested in the
-          bifurcation structure of 2D travelling waves (plane waves, fingering) in nonlocal cell adhesion models.
-        </p>
+      <p class="note">
+        Want this to auto-sync with Google Scholar? If you give me your Scholar profile link, I can swap this
+        for a fetch-based list (or a simple JSON file you update once).
+      </p>
+    </section>
 
-        <h2 style="margin-top:16px">Affiliation</h2>
-        <div class="item">
-          <div class="item-title">Postdoctoral Researcher <span class="where">• UMass Amherst</span></div>
-          <div class="muted">Mentor: Andreas Buttenschoen • [Start–End Dates]</div>
-        </div>
+    <!-- TEACHING -->
+    <section class="card section" id="teaching">
+      <div class="kicker">Teaching</div>
+      <h2>Positions</h2>
+      <div id="teachingItems"></div>
+    </section>
 
-        <h2 style="margin-top:16px">Links</h2>
-        <ul class="list muted">
-          <li><a href="#">Google Scholar</a> • <a href="#">arXiv</a> • <a href="#">ORCID</a></li>
-          <li><a href="#">GitHub</a> • <a href="#">ResearchGate</a> (optional)</li>
-        </ul>
-      </section>
+    <!-- TALKS -->
+    <section class="card section" id="talks">
+      <div class="kicker">Talks</div>
+      <h2>Presentations</h2>
+      <div id="talkItems"></div>
+    </section>
 
-      <section id="research" class="card">
-        <div class="kicker">Research</div>
-        <h2>Current themes</h2>
-        <div class="item">
-          <div class="item-title">Critical domain size &amp; hostile boundaries <span class="where">• go-or-grow models</span></div>
-          <p class="muted" style="margin:8px 0 0 0;">
-            How domain geometry and boundary conditions select persistence vs extinction, and how these thresholds
-            relate to wave speeds and invasion criteria.
-          </p>
-          <div class="tags">
-            <span class="tag">FKPP</span><span class="tag">steady states</span><span class="tag">spectral theory</span>
-          </div>
-        </div>
+    <!-- SERVICE -->
+    <section class="card section" id="service">
+      <div class="kicker">Service</div>
+      <h2>Organizing & outreach</h2>
+      <div id="serviceItems"></div>
+    </section>
 
-        <div class="item">
-          <div class="item-title">Travelling waves in PDE/ODE systems <span class="where">• existence / non-existence</span></div>
-          <p class="muted" style="margin:8px 0 0 0;">
-            Monotone waves, minimal speeds, and qualitative structure (including limiting reductions to FKPP-type equations).
-          </p>
-          <div class="tags">
-            <span class="tag">comparison</span><span class="tag">phase plane</span><span class="tag">minimal speed</span>
-          </div>
-        </div>
+    <!-- AWARDS -->
+    <section class="card section" id="awards">
+      <div class="kicker">Awards</div>
+      <h2>Honors & recognitions</h2>
+      <div id="awardItems"></div>
+    </section>
 
-        <div class="item">
-          <div class="item-title">Nonlocal adhesion &amp; 2D wave bifurcations <span class="where">• patterns</span></div>
-          <p class="muted" style="margin:8px 0 0 0;">
-            Plane waves, fingering, and migratory phenomena via nonlocal kernels; connecting linear instability to nonlinear selection.
-          </p>
-          <div class="tags">
-            <span class="tag">nonlocal kernels</span><span class="tag">bifurcation</span><span class="tag">patterns</span>
-          </div>
-        </div>
-      </section>
-
-      <section id="publications" class="card">
-        <div class="kicker">Publications</div>
-        <h2>Selected papers</h2>
-
-        <!-- Copy/paste this block per paper -->
-        <div class="item">
-          <div class="item-title">
-            <span>[Paper title]</span>
-            <span class="where">• [Journal / Preprint], [Year]</span>
-          </div>
-          <div class="muted">
-            With [Coauthors]. <a href="#">PDF</a> • <a href="#">arXiv</a> • <a href="#">DOI</a>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="item-title">
-            <span>[Paper title]</span>
-            <span class="where">• [Journal / Preprint], [Year]</span>
-          </div>
-          <div class="muted">
-            With [Coauthors]. <a href="#">PDF</a> • <a href="#">arXiv</a> • <a href="#">DOI</a>
-          </div>
-        </div>
-
-        <p class="note">
-          Tip: keep this “selected” list short (5–8 items). Put the full list in your CV, and link it.
-        </p>
-      </section>
-
-      <section id="teaching" class="card">
-        <div class="kicker">Teaching</div>
-        <h2>Courses</h2>
-        <div class="item">
-          <div class="item-title">Calculus II <span class="where">• UMass Amherst</span></div>
-          <div class="muted">[Term]. Topics: sequences/series, integration techniques, applications.</div>
-        </div>
-        <div class="item">
-          <div class="item-title">Differential Equations / Mathematical Modeling <span class="where">• [Institution]</span></div>
-          <div class="muted">[Term]. Topics: phase plane, linearization, predator–prey, SIR, nondimensionalization.</div>
-        </div>
-
-        <h2 style="margin-top:16px">Teaching materials</h2>
-        <ul class="list muted">
-          <li><a href="#">Lecture notes</a> (PDF)</li>
-          <li><a href="#">Assignments</a> (PDF)</li>
-          <li><a href="#">MATLAB / Python notebooks</a></li>
-        </ul>
-      </section>
-
-      <section id="talks" class="card">
-        <div class="kicker">Talks</div>
-        <h2>Recent &amp; upcoming</h2>
-        <div class="item">
-          <div class="item-title">[Talk title] <span class="where">• [Venue], [Month Year]</span></div>
-          <div class="muted">Slides: <a href="#">PDF</a> • Video: <a href="#">link</a></div>
-        </div>
-        <div class="item">
-          <div class="item-title">[Talk title] <span class="where">• [Venue], [Month Year]</span></div>
-          <div class="muted">Slides: <a href="#">PDF</a></div>
-        </div>
-      </section>
-
-      <section id="software" class="card">
-        <div class="kicker">Software</div>
-        <h2>Code &amp; computational work</h2>
-        <div class="item">
-          <div class="item-title">[Repo / project name] <span class="where">• GitHub</span></div>
-          <div class="muted">Short description: what it computes, what model it supports, and how to reproduce figures.</div>
-          <div class="tags">
-            <span class="tag">MATLAB</span><span class="tag">Python</span><span class="tag">reproducibility</span>
-          </div>
-        </div>
-
-        <p class="note">
-          If you want, we can add a “Reproducibility” section with a single command line that builds all figures.
-        </p>
-      </section>
-    </main>
+    <!-- EDUCATION -->
+    <section class="card section" id="education">
+      <div class="kicker">Education</div>
+      <h2>Degrees</h2>
+      <div id="eduItems"></div>
+    </section>
 
     <div class="footer">
-      <div>© <span id="y"></span> Ryan [Last Name].</div>
-      <div class="muted">Last updated: <span id="d"></span>.</div>
+      <div>© <span id="year"></span> <span id="footerName"></span></div>
+      <div class="muted">Built as a single static file (no build tools).</div>
     </div>
-  </div>
+  </main>
 
-  <script>
+</div>
+
+<script>
+  /***********************
+   * EDIT HERE (PROFILE) *
+   ***********************/
+  const PROFILE = {
+    name: "Ryan J. Thiessen",
+    kicker: "Applied Mathematics • Mathematical Biology",
+    subtitle: "Applied Mathematician • PDE/ODE models in biology • travelling waves • reaction–diffusion",
+    lastUpdatedISO: new Date().toISOString().slice(0,10),
+
+    // If your CV is outdated, you can show a friendly note here.
+    outdatedNote: "Some details below reflect an older CV; I’m updating affiliations/links as they finalize.",
+
+    contact: {
+      email: "rt5@ualberta.ca",
+      affiliationLine1: "University of Alberta (CV) — Edmonton, AB",
+      affiliationLine2: "Current: [Update to UMass Amherst + office if you want]",
+      office: "CAB 5-80 (CV)",
+      links: [
+        { label: "CV (PDF)", href: "RyanThiessenCV.pdf" },
+        { label: "Google Scholar", href: "#" },
+        { label: "ORCID", href: "#" },
+        { label: "GitHub", href: "#" }
+      ]
+    },
+
+    interests: [
+      "reaction–diffusion PDE/ODE systems",
+      "travelling waves & minimal speed",
+      "glioma invasion / go-or-grow models",
+      "pattern formation & anisotropy",
+      "mathematical biology"
+    ],
+
+    about:
+      "I work on PDE/ODE models arising in mathematical biology, with emphasis on travelling waves, steady states, and emergent pattern formation. Recent work includes modelling microtube-driven glioma invasion and studying go-or-grow frameworks in biology.",
+
+    quickLinks: [
+      { label: "arXiv", href: "#" },
+      { label: "Publications (jump)", href: "#publications" },
+      { label: "Teaching materials", href: "#teaching" }
+    ],
+
+    research: [
+      {
+        title: "Glioma invasion models",
+        where: "travelling waves • invasion mechanisms",
+        text: "Analysis and modelling of microtube-driven invasion, including wave existence and qualitative structure.",
+        tags: ["FKPP-type", "waves", "mathematical oncology"]
+      },
+      {
+        title: "Go-or-Grow frameworks in biology",
+        where: "PDE/ODE hybrids • multiscale structure",
+        text: "Developing and analyzing go-or-grow models as a modelling paradigm across biological applications.",
+        tags: ["PDE/ODE", "phase plane", "thresholds"]
+      },
+      {
+        title: "Anisotropic chemotaxis & network patterns",
+        where: "pattern formation • anisotropy",
+        text: "Kinetic and diffusive chemotaxis models exhibiting network-like structures under anisotropic effects.",
+        tags: ["anisotropy", "patterns", "chemotaxis"]
+      }
+    ],
+
+    publications: [
+      // Published (from CV)
+      {
+        type: "published",
+        year: 2024,
+        title: "Modelling microtube driven invasion of glioma",
+        authors: "Hillen, T.; Loy, N.; Painter, K. J.; Thiessen, R.",
+        venue: "Journal of Mathematical Biology 88(1):4 (2024)",
+        links: [
+          { label: "Journal", href: "#" }
+        ],
+        keywords: ["glioma", "microtube", "invasion", "travelling waves"]
+      },
+      {
+        type: "published",
+        year: 2021,
+        title: "Anisotropic network patterns in kinetic and diffusive chemotaxis models",
+        authors: "Thiessen, R.; Hillen, T.",
+        venue: "Mathematics 9(13):1561 (2021)",
+        links: [
+          { label: "Journal", href: "#" }
+        ],
+        keywords: ["chemotaxis", "anisotropy", "patterns"]
+      },
+      {
+        type: "published",
+        year: 2019,
+        title: "Nonlinear dynamics of a viscous bubbly fluid",
+        authors: "Thiessen, R. J.; Cheviakov, A. F.",
+        venue: "Communications in Nonlinear Science and Numerical Simulation 73:244–264 (2019)",
+        links: [
+          { label: "Journal", href: "#" }
+        ],
+        keywords: ["fluid dynamics", "nonlinear dynamics"]
+      },
+
+      // Submitted (from CV)
+      {
+        type: "submitted",
+        year: 2024,
+        title: "Go-or-Grow Models in Biology: A monster on a leash",
+        authors: "Thiessen, R.; Conte, M.; Stepien, T.; Hillen, T.",
+        venue: "Submitted (2024)",
+        links: [
+          { label: "Preprint", href: "#" }
+        ],
+        keywords: ["go-or-grow", "modelling"]
+      },
+      {
+        type: "submitted",
+        year: 2024,
+        title: "Travelling Wave Solutions to a Microtube-Driven Glioma Invasion Model",
+        authors: "Thiessen, R.; Hillen, T.",
+        venue: "Submitted (2024)",
+        links: [
+          { label: "Preprint", href: "#" }
+        ],
+        keywords: ["travelling waves", "glioma"]
+      }
+    ],
+
+    teaching: [
+      { title: "MATH 101 (Calculus II) — Lab Instructor", where: "University of Alberta", when: "Winter 2019 & Winter 2021" },
+      { title: "MATH 209 (Calculus III) — Lab Instructor", where: "University of Alberta", when: "Fall 2020 & Fall 2021" },
+      { title: "MATH 201 (Differential Equations) — Lab Instructor", where: "University of Alberta", when: "Winter 2021 & Spring 2021" }
+    ],
+
+    talks: [
+      {
+        title: "Travelling waves of a new glioma invasion model",
+        where: "International Council for Industrial and Applied Mathematics (ICIAM), Waseda University",
+        when: "Tokyo, Japan — 2023",
+        links: [{ label: "Slides", href: "#" }]
+      },
+      {
+        title: "Travelling waves of a new glioma invasion model",
+        where: "Canadian Mathematical Society (CMS), Memorial University of Newfoundland",
+        when: "St. John's, NL, Canada — 2022",
+        links: [{ label: "Slides", href: "#" }]
+      },
+      {
+        title: "Network patterns in Anisotropic Chemotaxis Models",
+        where: "CAIMS, University of Waterloo",
+        when: "Waterloo, ON, Canada — 2021",
+        links: [{ label: "Poster", href: "#" }]
+      }
+    ],
+
+    service: [
+      { title: "Organizer — U of A MathBio Journal Club", when: "2021–2022" },
+      { title: "Vice President — SIGMAS", when: "2020–2022" },
+      { title: "Organized minisymposium: Modelling the Cancer Microenvironment", when: "Computational and Mathematical Population Dynamics 6, Winnipeg, MB — 2023" }
+    ],
+
+    awards: [
+      "Alberta Graduate Excellence Scholarship (2023)",
+      "NSERC — Canada Graduate Scholarship (Doctoral) (2022)",
+      "President’s Doctoral Prize of Distinction (2022)",
+      "Alberta Innovates Graduate Student Scholarship (2021)",
+      "Eoin L Whitney Scholarship (2021)",
+      "University of Alberta Doctoral Recruitment Scholarship (2020)",
+      "NSERC — Canada Graduate Scholarship (Master’s) (2019)",
+      "Walter H. Johns Fellowship (2019)",
+      "Queen Elizabeth II Graduate Scholarship (Master’s) (2018)",
+      "Most Outstanding Graduate in Mathematical Physics (2018)",
+      "Dean’s Honour List (2016–2017)",
+      "Undergraduate Student Research Awards (USRA) (2017)",
+      "Willa and Stuart B. Woods Bursary in Physics (2017)",
+      "University of Saskatchewan Entrance Scholarship (2013)"
+    ],
+
+    education: [
+      { degree: "Ph.D. in Applied Mathematics", where: "University of Alberta, Edmonton, AB", when: "2020–2025 (expected completion date on CV)" },
+      { degree: "M.Sc. in Applied Mathematics", where: "University of Alberta, Edmonton, AB", when: "2018–2020" },
+      { degree: "B.Sc. (Honours) in Mathematical Physics", where: "University of Saskatchewan, Saskatoon, SK", when: "2013–2018" }
+    ]
+  };
+
+  /***********************
+   * RENDERING FUNCTIONS *
+   ***********************/
+  const el = (id) => document.getElementById(id);
+
+  function renderHero(){
+    el("kicker").textContent = PROFILE.kicker;
+    el("name").textContent = PROFILE.name;
+    el("subtitle").textContent = PROFILE.subtitle;
+
+    // pills
+    const pillrow = el("pillrow");
+    pillrow.innerHTML = "";
+    PROFILE.interests.forEach(t => {
+      const s = document.createElement("span");
+      s.className = "pill";
+      s.textContent = t;
+      pillrow.appendChild(s);
+    });
+
+    // contact
+    const c = PROFILE.contact;
+    const linkHTML = c.links.map(x => `<a href="${x.href}">${x.label}</a>`).join(" • ");
+    el("contact").innerHTML = `
+      <div><strong>Email:</strong> <a href="mailto:${c.email}">${c.email}</a></div>
+      <div>${escapeHtml(c.affiliationLine1)}</div>
+      <div>${escapeHtml(c.affiliationLine2)}</div>
+      <div><strong>Office:</strong> ${escapeHtml(c.office)}</div>
+      <div style="margin-top:8px">${linkHTML}</div>
+    `;
+
+    // buttons
+    const btns = el("buttons");
+    btns.innerHTML = "";
+    const primary = [
+      { label: "Publications", href: "#publications" },
+      { label: "Download CV", href: "RyanThiessenCV.pdf" }
+    ];
+    primary.forEach(b => {
+      const a = document.createElement("a");
+      a.className = "btn";
+      a.href = b.href;
+      a.textContent = b.label;
+      btns.appendChild(a);
+    });
+
+    // note
+    if (PROFILE.outdatedNote && PROFILE.outdatedNote.trim().length){
+      el("outdatedNote").style.display = "block";
+      el("outdatedNote").textContent = PROFILE.outdatedNote;
+    }
+  }
+
+  function renderAbout(){
+    el("aboutText").textContent = PROFILE.about;
+
+    el("quickLinks").innerHTML =
+      "<ul class='muted' style='margin:0; padding-left: 18px;'>" +
+      PROFILE.quickLinks.map(x => `<li style="margin:8px 0;"><a href="${x.href}">${x.label}</a></li>`).join("") +
+      "</ul>";
+  }
+
+  function renderItems(containerId, items){
+    const box = el(containerId);
+    box.innerHTML = "";
+    items.forEach((it) => {
+      const d = document.createElement("div");
+      d.className = "item";
+      d.innerHTML = `
+        <div class="item-title">${escapeHtml(it.title)} <span class="where">• ${escapeHtml(it.where || "")}</span></div>
+        ${it.text ? `<div class="muted" style="margin-top:6px">${escapeHtml(it.text)}</div>` : ""}
+        ${it.when ? `<div class="mini" style="margin-top:6px">${escapeHtml(it.when)}</div>` : ""}
+        ${it.tags ? `<div class="tags">${it.tags.map(t=>`<span class="tag">${escapeHtml(t)}</span>`).join("")}</div>` : ""}
+      `;
+      box.appendChild(d);
+    });
+  }
+
+  function renderTeaching(){
+    const box = el("teachingItems");
+    box.innerHTML = "";
+    PROFILE.teaching.forEach(t => {
+      const d = document.createElement("div");
+      d.className = "item";
+      d.innerHTML = `
+        <div class="item-title">${escapeHtml(t.title)} <span class="where">• ${escapeHtml(t.where)}</span></div>
+        <div class="mini">${escapeHtml(t.when)}</div>
+      `;
+      box.appendChild(d);
+    });
+  }
+
+  function renderTalks(){
+    const box = el("talkItems");
+    box.innerHTML = "";
+    PROFILE.talks.forEach(t => {
+      const links = (t.links||[]).map(x => `<a href="${x.href}">${escapeHtml(x.label)}</a>`).join(" • ");
+      const d = document.createElement("div");
+      d.className = "item";
+      d.innerHTML = `
+        <div class="item-title">${escapeHtml(t.title)}</div>
+        <div class="mini">${escapeHtml(t.where)} — ${escapeHtml(t.when)}</div>
+        ${links ? `<div class="mini" style="margin-top:6px">${links}</div>` : ""}
+      `;
+      box.appendChild(d);
+    });
+  }
+
+  function renderService(){
+    const box = el("serviceItems");
+    box.innerHTML = "";
+    PROFILE.service.forEach(s => {
+      const d = document.createElement("div");
+      d.className = "item";
+      d.innerHTML = `
+        <div class="item-title">${escapeHtml(s.title)}</div>
+        <div class="mini">${escapeHtml(s.when)}</div>
+      `;
+      box.appendChild(d);
+    });
+  }
+
+  function renderAwards(){
+    const box = el("awardItems");
+    box.innerHTML = "";
+    PROFILE.awards.forEach(a => {
+      const d = document.createElement("div");
+      d.className = "item";
+      d.innerHTML = `<div class="mini">${escapeHtml(a)}</div>`;
+      box.appendChild(d);
+    });
+  }
+
+  function renderEducation(){
+    const box = el("eduItems");
+    box.innerHTML = "";
+    PROFILE.education.forEach(e => {
+      const d = document.createElement("div");
+      d.className = "item";
+      d.innerHTML = `
+        <div class="item-title">${escapeHtml(e.degree)} <span class="where">• ${escapeHtml(e.where)}</span></div>
+        <div class="mini">${escapeHtml(e.when)}</div>
+      `;
+      box.appendChild(d);
+    });
+  }
+
+  // Publications filtering/search
+  function buildYearOptions(){
+    const years = Array.from(new Set(PROFILE.publications.map(p => p.year))).sort((a,b)=>b-a);
+    const sel = el("pubYear");
+    years.forEach(y => {
+      const o = document.createElement("option");
+      o.value = String(y);
+      o.textContent = String(y);
+      sel.appendChild(o);
+    });
+  }
+
+  function renderPubs(){
+    const q = (el("pubSearch").value || "").trim().toLowerCase();
+    const typ = el("pubType").value;
+    const yr = el("pubYear").value;
+
+    const filtered = PROFILE.publications.filter(p => {
+      if (typ !== "all" && p.type !== typ) return false;
+      if (yr !== "all" && String(p.year) !== yr) return false;
+
+      if (!q) return true;
+      const hay = [
+        p.title, p.authors, p.venue,
+        ...(p.keywords || [])
+      ].join(" ").toLowerCase();
+      return hay.includes(q);
+    }).sort((a,b)=>{
+      if (b.year !== a.year) return b.year - a.year;
+      // published first when same year
+      if (a.type !== b.type) return (a.type === "published" ? -1 : 1);
+      return a.title.localeCompare(b.title);
+    });
+
+    el("pubCount").textContent = `${filtered.length} / ${PROFILE.publications.length}`;
+
+    const box = el("pubList");
+    box.innerHTML = "";
+    filtered.forEach(p => {
+      const d = document.createElement("div");
+      d.className = "pub";
+      const typeBadge = p.type === "published" ? "Published" : "Submitted";
+      const links = (p.links||[]).map(x => `<a href="${x.href}">${escapeHtml(x.label)}</a>`).join(" • ");
+      d.innerHTML = `
+        <div class="title">${escapeHtml(p.title)}</div>
+        <div class="meta">${escapeHtml(p.authors)} • <span class="where">${escapeHtml(p.venue)}</span> • ${escapeHtml(String(p.year))} • ${typeBadge}</div>
+        ${links ? `<div class="links">${links}</div>` : ""}
+      `;
+      box.appendChild(d);
+    });
+
+    if (!filtered.length){
+      box.innerHTML = `<div class="muted" style="padding: 10px 0;">No matches. Try a different query or remove filters.</div>`;
+    }
+  }
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, (m) => ({
+      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+    }[m]));
+  }
+
+  function main(){
+    renderHero();
+    renderAbout();
+    renderItems("researchItems", PROFILE.research);
+    renderTeaching();
+    renderTalks();
+    renderService();
+    renderAwards();
+    renderEducation();
+
+    buildYearOptions();
+    renderPubs();
+
+    el("pubSearch").addEventListener("input", renderPubs);
+    el("pubType").addEventListener("change", renderPubs);
+    el("pubYear").addEventListener("change", renderPubs);
+
     const now = new Date();
-    document.getElementById("y").textContent = String(now.getFullYear());
-    document.getElementById("d").textContent = now.toLocaleDateString(undefined, {year:"numeric", month:"long", day:"numeric"});
-  </script>
+    el("year").textContent = String(now.getFullYear());
+    el("footerName").textContent = PROFILE.name;
+    el("lastUpdated").textContent = new Date(PROFILE.lastUpdatedISO).toLocaleDateString(undefined, {year:"numeric", month:"long", day:"numeric"});
+  }
+
+  main();
+</script>
 </body>
 </html>
