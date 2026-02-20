@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Ryan — Applied Mathematician | PDE/ODE models, reaction–diffusion, mathematical biology" />
+  <title>Ryan — Applied Mathematician</title>
+
+  <style>
+    :root{
+      --bg:#0b1020;
+      --panel:#0f1730;
+      --text:#e8ecff;
+      --muted:#b9c2ffcc;
+      --line:#2a3570;
+      --accent:#8ad7ff;
+      --accent2:#b5ffb0;
+      --link:#9be1ff;
+      --shadow: 0 18px 60px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1020px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#f7f9ff;
+        --panel:#ffffff;
+        --text:#0c1333;
+        --muted:#32406acc;
+        --line:#dbe3ff;
+        --accent:#006cff;
+        --accent2:#0a8a2a;
+        --link:#0057d9;
+        --shadow: 0 14px 40px rgba(12,19,51,.12);
+      }
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family: var(--sans);
+      background:
+        radial-gradient(900px 500px at 10% 0%, rgba(138,215,255,.20), transparent 60%),
+        radial-gradient(900px 500px at 90% 10%, rgba(181,255,176,.14), transparent 60%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    a{color:var(--link);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:var(--max); margin: 0 auto; padding: 28px 18px 64px}
+    header{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items: start;
+      margin-top: 12px;
+    }
+    @media (max-width: 860px){
+      header{grid-template-columns:1fr}
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), transparent), var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+    .title{
+      display:flex; flex-direction:column; gap:8px;
+    }
+    h1{
+      margin: 0;
+      font-size: 40px;
+      letter-spacing: -0.02em;
+    }
+    .subtitle{
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+    .pillrow{display:flex; flex-wrap:wrap; gap:10px; margin-top: 12px}
+    .pill{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    nav{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      align-items:center;
+    }
+    nav a{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      border: 1px solid var(--line);
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.02);
+    }
+    nav a:hover{background: rgba(255,255,255,.06); text-decoration:none}
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+    @media (max-width: 860px){
+      .grid{grid-template-columns: 1fr}
+    }
+    h2{
+      margin: 0 0 10px 0;
+      font-size: 20px;
+      letter-spacing: -0.01em;
+    }
+    .muted{color: var(--muted)}
+    .list{margin: 10px 0 0 0; padding-left: 18px}
+    .list li{margin: 8px 0}
+    .kicker{
+      font-family: var(--mono);
+      color: var(--accent);
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      opacity: .95;
+    }
+    .item{
+      padding: 12px 0;
+      border-top: 1px solid var(--line);
+    }
+    .item:first-of-type{border-top:none; padding-top: 0}
+    .item-title{
+      font-weight: 650;
+      display:flex;
+      gap: 10px;
+      flex-wrap:wrap;
+      align-items:baseline;
+    }
+    .where{color: var(--muted); font-weight: 500}
+    .tags{display:flex; flex-wrap:wrap; gap: 8px; margin-top: 8px}
+    .tag{
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px dashed var(--line);
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.02);
+    }
+    .footer{
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 13px;
+      display:flex;
+      justify-content:space-between;
+      gap: 10px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      border: 1px solid var(--line);
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.03);
+      font-weight: 650;
+    }
+    .btn:hover{background: rgba(255,255,255,.08); text-decoration:none}
+    .two{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 520px){ .two{grid-template-columns: 1fr} }
+    .note{
+      border-left: 3px solid var(--accent2);
+      padding: 10px 12px;
+      background: rgba(181,255,176,.06);
+      border-radius: 10px;
+      color: var(--muted);
+      margin-top: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <section class="card">
+        <div class="kicker">Applied Mathematics • Mathematical Biology</div>
+        <div class="title">
+          <h1>Ryan <span style="color:var(--accent)">[Last Name]</span></h1>
+          <p class="subtitle">
+            Postdoctoral Researcher, University of Massachusetts Amherst •
+            PDE/ODE models • reaction–diffusion • travelling waves • critical domain size
+          </p>
+        </div>
+
+        <div class="pillrow" aria-label="research interests">
+          <span class="pill">reaction–diffusion PDE/ODE systems</span>
+          <span class="pill">go-or-grow glioma models</span>
+          <span class="pill">nonlocal cell adhesion</span>
+          <span class="pill">bifurcation &amp; pattern formation</span>
+          <span class="pill">Young measures / measure-valued states</span>
+        </div>
+
+        <p class="note">
+          I build and analyze mathematical models in biology and medicine, with a focus on
+          qualitative dynamics, travelling waves, and steady states under constraints (e.g., hostile boundaries).
+        </p>
+      </section>
+
+      <aside class="card">
+        <h2>Contact</h2>
+        <p class="muted" style="margin-top:6px; margin-bottom: 14px;">
+          <strong>Email:</strong> <a href="mailto:you@umass.edu">you@umass.edu</a><br/>
+          <strong>Office:</strong> [Building], Amherst, MA<br/>
+          <strong>CV:</strong> <a href="cv.pdf">cv.pdf</a> (upload alongside this file)<br/>
+          <strong>Scholar:</strong> <a href="#">Google Scholar</a> •
+          <strong>ORCID:</strong> <a href="#">0000-0000-0000-0000</a>
+        </p>
+
+        <nav aria-label="site navigation">
+          <a href="#about">About</a>
+          <a href="#research">Research</a>
+          <a href="#publications">Publications</a>
+          <a href="#teaching">Teaching</a>
+          <a href="#talks">Talks</a>
+          <a href="#software">Software</a>
+        </nav>
+
+        <div style="margin-top:14px" class="two">
+          <a class="btn" href="#publications">See papers</a>
+          <a class="btn" href="cv.pdf">Download CV</a>
+        </div>
+      </aside>
+    </header>
+
+    <main class="grid">
+      <section id="about" class="card">
+        <div class="kicker">About</div>
+        <h2>Summary</h2>
+        <p class="muted">
+          I’m an applied mathematician working on PDE/ODE models arising in mathematical biology.
+          My recent work studies <em>critical domain size</em> phenomena and multistability in go-or-grow glioma models,
+          and travelling wave solutions for cooperative and non-cooperative systems. I’m also interested in the
+          bifurcation structure of 2D travelling waves (plane waves, fingering) in nonlocal cell adhesion models.
+        </p>
+
+        <h2 style="margin-top:16px">Affiliation</h2>
+        <div class="item">
+          <div class="item-title">Postdoctoral Researcher <span class="where">• UMass Amherst</span></div>
+          <div class="muted">Mentor: Andreas Buttenschoen • [Start–End Dates]</div>
+        </div>
+
+        <h2 style="margin-top:16px">Links</h2>
+        <ul class="list muted">
+          <li><a href="#">Google Scholar</a> • <a href="#">arXiv</a> • <a href="#">ORCID</a></li>
+          <li><a href="#">GitHub</a> • <a href="#">ResearchGate</a> (optional)</li>
+        </ul>
+      </section>
+
+      <section id="research" class="card">
+        <div class="kicker">Research</div>
+        <h2>Current themes</h2>
+        <div class="item">
+          <div class="item-title">Critical domain size &amp; hostile boundaries <span class="where">• go-or-grow models</span></div>
+          <p class="muted" style="margin:8px 0 0 0;">
+            How domain geometry and boundary conditions select persistence vs extinction, and how these thresholds
+            relate to wave speeds and invasion criteria.
+          </p>
+          <div class="tags">
+            <span class="tag">FKPP</span><span class="tag">steady states</span><span class="tag">spectral theory</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-title">Travelling waves in PDE/ODE systems <span class="where">• existence / non-existence</span></div>
+          <p class="muted" style="margin:8px 0 0 0;">
+            Monotone waves, minimal speeds, and qualitative structure (including limiting reductions to FKPP-type equations).
+          </p>
+          <div class="tags">
+            <span class="tag">comparison</span><span class="tag">phase plane</span><span class="tag">minimal speed</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-title">Nonlocal adhesion &amp; 2D wave bifurcations <span class="where">• patterns</span></div>
+          <p class="muted" style="margin:8px 0 0 0;">
+            Plane waves, fingering, and migratory phenomena via nonlocal kernels; connecting linear instability to nonlinear selection.
+          </p>
+          <div class="tags">
+            <span class="tag">nonlocal kernels</span><span class="tag">bifurcation</span><span class="tag">patterns</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="publications" class="card">
+        <div class="kicker">Publications</div>
+        <h2>Selected papers</h2>
+
+        <!-- Copy/paste this block per paper -->
+        <div class="item">
+          <div class="item-title">
+            <span>[Paper title]</span>
+            <span class="where">• [Journal / Preprint], [Year]</span>
+          </div>
+          <div class="muted">
+            With [Coauthors]. <a href="#">PDF</a> • <a href="#">arXiv</a> • <a href="#">DOI</a>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-title">
+            <span>[Paper title]</span>
+            <span class="where">• [Journal / Preprint], [Year]</span>
+          </div>
+          <div class="muted">
+            With [Coauthors]. <a href="#">PDF</a> • <a href="#">arXiv</a> • <a href="#">DOI</a>
+          </div>
+        </div>
+
+        <p class="note">
+          Tip: keep this “selected” list short (5–8 items). Put the full list in your CV, and link it.
+        </p>
+      </section>
+
+      <section id="teaching" class="card">
+        <div class="kicker">Teaching</div>
+        <h2>Courses</h2>
+        <div class="item">
+          <div class="item-title">Calculus II <span class="where">• UMass Amherst</span></div>
+          <div class="muted">[Term]. Topics: sequences/series, integration techniques, applications.</div>
+        </div>
+        <div class="item">
+          <div class="item-title">Differential Equations / Mathematical Modeling <span class="where">• [Institution]</span></div>
+          <div class="muted">[Term]. Topics: phase plane, linearization, predator–prey, SIR, nondimensionalization.</div>
+        </div>
+
+        <h2 style="margin-top:16px">Teaching materials</h2>
+        <ul class="list muted">
+          <li><a href="#">Lecture notes</a> (PDF)</li>
+          <li><a href="#">Assignments</a> (PDF)</li>
+          <li><a href="#">MATLAB / Python notebooks</a></li>
+        </ul>
+      </section>
+
+      <section id="talks" class="card">
+        <div class="kicker">Talks</div>
+        <h2>Recent &amp; upcoming</h2>
+        <div class="item">
+          <div class="item-title">[Talk title] <span class="where">• [Venue], [Month Year]</span></div>
+          <div class="muted">Slides: <a href="#">PDF</a> • Video: <a href="#">link</a></div>
+        </div>
+        <div class="item">
+          <div class="item-title">[Talk title] <span class="where">• [Venue], [Month Year]</span></div>
+          <div class="muted">Slides: <a href="#">PDF</a></div>
+        </div>
+      </section>
+
+      <section id="software" class="card">
+        <div class="kicker">Software</div>
+        <h2>Code &amp; computational work</h2>
+        <div class="item">
+          <div class="item-title">[Repo / project name] <span class="where">• GitHub</span></div>
+          <div class="muted">Short description: what it computes, what model it supports, and how to reproduce figures.</div>
+          <div class="tags">
+            <span class="tag">MATLAB</span><span class="tag">Python</span><span class="tag">reproducibility</span>
+          </div>
+        </div>
+
+        <p class="note">
+          If you want, we can add a “Reproducibility” section with a single command line that builds all figures.
+        </p>
+      </section>
+    </main>
+
+    <div class="footer">
+      <div>© <span id="y"></span> Ryan [Last Name].</div>
+      <div class="muted">Last updated: <span id="d"></span>.</div>
+    </div>
+  </div>
+
+  <script>
+    const now = new Date();
+    document.getElementById("y").textContent = String(now.getFullYear());
+    document.getElementById("d").textContent = now.toLocaleDateString(undefined, {year:"numeric", month:"long", day:"numeric"});
+  </script>
+</body>
+</html>
